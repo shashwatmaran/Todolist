@@ -91,5 +91,13 @@ public class TodolistService {
         service.getAllTasks().forEach(System.out::println);
 
         System.out.println("\nTotal tasks: " + service.getTaskCount());
+
+        // Keep the application running so Kubernetes doesn't restart the pod (CrashLoopBackOff)
+        System.out.println("\nApplication is running. Press Ctrl+C to exit.");
+        try {
+            Thread.currentThread().join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }
